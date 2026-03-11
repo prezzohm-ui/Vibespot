@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ VibeSpot · Prezzoh Musila ✨</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Arial', system-ui, sans-serif;
+      background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #1f1a36 100%);
+      min-height: 100vh;
+      color: #e0e0e0;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    /* main card - more subtle now */
+    .opening-portal {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(25, 25, 35, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(200, 150, 100, 0.3);
+      border-radius: 2.5rem 1rem 2.5rem 1rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 140, 0, 0.2);
+      padding: 2.5rem 2rem;
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge span {
+      font-size: 3rem;
+      opacity: 0.9;
+    }
+
+    .hero-badge h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffb347, #ff8c5a, #c47aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+    }
+
+    .sub-greeting {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      background: rgba(30, 30, 40, 0.7);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      display: inline-block;
+      border-left: 5px solid #ff8c5a;
+      border-right: 5px solid #9d7aff;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+
+    .sub-greeting mark {
+      background: #332e4a;
+      color: #ffb98a;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-weight: bold;
+    }
+
+    /* feature grid - more muted but still nice */
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+      justify-content: center;
+    }
+
+    .feature-item {
+      flex: 1 1 150px;
+      min-width: 150px;
+      background: linear-gradient(45deg, #3a2a4a, #2d3f5e);
+      padding: 2px;
+      border-radius: 30px 8px 30px 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 10px 20px -8px black;
+    }
+
+    .feature-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px #5f4b8b;
+    }
+
+    .feature-content {
+      background: #1e1e2a;
+      border-radius: 28px 6px 28px 6px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      height: 100%;
+    }
+
+    .feature-content .emoji-big {
+      font-size: 3.2rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    .feature-content h3 {
+      font-size: 1.8rem;
+      margin: 0.5rem 0 0.2rem;
+      background: linear-gradient(to right, #ffae6a, #c49aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .feature-content p {
+      color: #a9a9c0;
+      font-weight: 500;
+    }
+
+    /* Latest Songs & Movie Trailers sections - more balanced */
+    .fresh-content-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 2.5rem 0;
+      justify-content: center;
+    }
+
+    .fresh-card {
+      flex: 1 1 300px;
+      background: rgba(20, 20, 30, 0.8);
+      backdrop-filter: blur(6px);
+      border: 1px solid #5f4b8b;
+      border-radius: 30px 8px 30px 8px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: 0.2s;
+    }
+
+    .fresh-card:hover {
+      border-color: #b77aff;
+      box-shadow: 0 0 30px #3a2a5e;
+    }
+
+    .fresh-card h2 {
+      font-size: 2rem;
+      background: linear-gradient(145deg, #ffae6a, #c07aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #5f4b8b;
+      padding-bottom: 0.5rem;
+    }
+
+    .track-list, .trailer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .track-item, .trailer-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(40, 35, 55, 0.6);
+      padding: 0.7rem 1rem;
+      border-radius: 40px 6px 40px 6px;
+      border-left: 4px solid #b77aff;
+    }
+
+    .track-icon, .trailer-icon {
+      font-size: 2rem;
+      background: #252035;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .track-info h3, .trailer-info h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #ffcba4;
+    }
+
+    .track-info p, .trailer-info p {
+      color: #a0a0b8;
+      font-size: 0.9rem;
+    }
+
+    .play-button {
+      background: #2a2538;
+      border: 1px solid #b77aff;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-weight: bold;
+      color: #e0c4ff;
+      margin-left: auto;
+      cursor: pointer;
+      transition: 0.1s;
+      font-size: 1rem;
+    }
+
+    .play-button:hover {
+      background: #3f2d5e;
+      border-color: #ffae6a;
+      color: white;
+    }
+
+    /* mini slider preview - toned down */
+    .mini-slider {
+      background: rgba(25, 20, 35, 0.7);
+      padding: 1rem;
+      border-radius: 50px 8px 50px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+      border: 1px solid #5f4b8b;
+    }
+
+    .mini-slider img {
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 20px 4px 20px 4px;
+      border: 2px solid #b77aff;
+      box-shadow: 0 0 15px #2a1f3a;
+    }
+
+    .slider-caption {
+      font-size: 1.5rem;
+      background: #1e1a2b;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      color: #d4b8ff;
+      font-weight: 600;
+    }
+
+    /* ENTER button - cleaner now */
+    .enter-btn-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 2.5rem 0 1.5rem;
+    }
+
+    .enter-main-site {
+      background: linear-gradient(145deg, #2a1f3a, #1f1a2f);
+      border: 2px solid #b77aff;
+      padding: 1.2rem 3rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+      border-radius: 60px;
+      color: #ffd8b0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      box-shadow: 0 5px 0 #0f0b17, 0 10px 25px black;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      transition: 0.1s;
+    }
+
+    .enter-main-site:active {
+      transform: translateY(5px);
+      box-shadow: 0 0 0 #0f0b17, 0 10px 20px black;
+    }
+
+    .enter-main-site:hover {
+      background: linear-gradient(145deg, #35294a, #2a2340);
+      border-color: #ffae6a;
+      color: #ffe7c4;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      justify-content: center;
+      margin: 1.8rem 0;
+      font-size: 1.3rem;
+    }
+
+    .quick-links a {
+      color: #c7b0e6;
+      text-decoration: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      background: rgba(30, 25, 40, 0.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid #5f4b8b;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quick-links a:hover {
+      background: #3a2d55;
+      color: #ffd8b0;
+      border-color: #b77aff;
+    }
+
+    .opening-footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #a090b8;
+      border-top: 1px dashed #5f4b8b;
+      padding-top: 1.8rem;
+    }
+
+    .opening-footer p {
+      color: #c7b0e6;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .opening-portal { padding: 1.5rem; }
+      .hero-badge h1 { font-size: 2.2rem; }
+      .sub-greeting { font-size: 1.2rem; }
+      .enter-main-site { font-size: 1.8rem; padding: 1rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="opening-portal">
+    <!-- header -->
+    <div class="hero-badge">
+      <span>🎵</span>
+      <h1>VibeSpot</h1>
+      <span>🎬</span>
+    </div>
+
+    <div class="sub-greeting">
+      <mark>Prezzoh Musila</mark> · entertainment hub
+    </div>
+
+    <!-- mini preview slider -->
+    <div class="mini-slider">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%233a2a5e'/%3E%3Ctext x='40' y='100' fill='white' font-size='28'%3EWEEKND%3C/text%3E%3C/svg%3E" alt="weeknd">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%232d1f3a'/%3E%3Ctext x='30' y='100' fill='white' font-size='28'%3EDARK KNIGHT%3C/text%3E%3C/svg%3E" alt="dark knight">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%232f4a3a'/%3E%3Ctext x='40' y='100' fill='white' font-size='28'%3EMWII%3C/text%3E%3C/svg%3E" alt="mw2">
+      <div class="slider-caption">your entertainment hub</div>
+    </div>
+
+    <!-- Latest Songs & Movie Trailers -->
+    <div class="fresh-content-row">
+      <!-- Latest Songs card -->
+      <div class="fresh-card">
+        <h2>🎵 LATEST SONGS</h2>
+        <div class="track-list">
+          <div class="track-item">
+            <span class="track-icon">🎤</span>
+            <div class="track-info">
+              <h3>The Weeknd - Blinding Lights</h3>
+              <p>#1 hit</p>
+            </div>
+            <button class="play-button" onclick="goToMainSite('music')">▶</button>
+          </div>
+          <div class="track-item">
+            <span class="track-icon">🎸</span>
+            <div class="track-info">
+              <h3>Dua Lipa - Levitating</h3>
+              <p>pop hit</p>
+            </div>
+            <button class="play-button" onclick="goToMainSite('music')">▶</button>
+          </div>
+          <div class="track-item">
+            <span class="track-icon">🧑‍🎤</span>
+            <div class="track-info">
+              <h3>Harry Styles - As It Was</h3>
+              <p>pop rocket</p>
+            </div>
+            <button class="play-button" onclick="goToMainSite('music')">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Movie Trailers card -->
+      <div class="fresh-card">
+        <h2>🎬 MOVIE TRAILERS</h2>
+        <div class="trailer-list">
+          <div class="trailer-item">
+            <span class="trailer-icon">🦇</span>
+            <div class="trailer-info">
+              <h3>The Dark Knight</h3>
+              <p>Nolan epic</p>
+            </div>
+            <button class="play-button" onclick="goToMainSite('movies')">▶</button>
+          </div>
+          <div class="trailer-item">
+            <span class="trailer-icon">👽</span>
+            <div class="trailer-info">
+              <h3>Dune: Part Two</h3>
+              <p>sci-fi</p>
+            </div>
+            <button class="play-button" onclick="goToMainSite('movies')">▶</button>
+          </div>
+          <div class="trailer-item">
+            <span class="trailer-icon">🕷️</span>
+            <div class="trailer-info">
+              <h3>Spider-Verse</h3>
+              <p>animated</p>
+            </div>
+            <button class="play-button" onclick="goToMainSite('movies')">▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENTER BUTTON - Now actually opens index.html -->
+    <div class="enter-btn-wrapper">
+      <button class="enter-main-site" onclick="window.location.href='index.html'">
+        <span>▶</span> ENTER VIBE <span>◀</span>
+      </button>
+      <p style="margin-top: 10px; font-size: 1rem; color: #a090b8;">(opens your main website)</p>
+    </div>
+
+    <!-- quick links - also open index.html with section parameter -->
+    <div class="quick-links">
+      <a href="#" onclick="goToMainSite('home')">🏠 HOME</a>
+      <a href="#" onclick="goToMainSite('music')">🎧 MUSIC</a>
+      <a href="#" onclick="goToMainSite('movies')">🍿 MOVIES</a>
+      <a href="#" onclick="goToMainSite('gaming')">🕹️ GAMING</a>
+      <a href="#" onclick="goToMainSite('about')">💬 ABOUT</a>
+    </div>
+
+    <!-- contact -->
+    <div style="background: #1e1a2b; border-radius: 50px; padding: 1rem; margin: 1.5rem 0 0; text-align: center; border: 1px solid #5f4b8b;">
+      <span style="font-size: 1.3rem;">📱 0717740254  ·  ✉️ prezzohm@gmail.com</span>
+    </div>
+
+    <div class="opening-footer">
+      <p>© 2026 VibeSpot · Created by Prezzoh Musila</p>
+    </div>
+  </div>
+
+  <script>
+    // Function to go to main site with specific section
+    function goToMainSite(section) {
+      // You can pass the section as a URL parameter
+      // Your index.html would need to read this parameter and show the right section
+      window.location.href = 'index.html?section=' + section;
+    }
+    
+    // Alternative: if you want to store the section in localStorage
+    function goToMainSiteWithStorage(section) {
+      localStorage.setItem('vibespotSection', section);
+      window.location.href = 'index.html';
+    }
+    
+    // For the play buttons, use the same function
+    window.goToMainSite = goToMainSite;
+  </script>
+</body>
+</html>
