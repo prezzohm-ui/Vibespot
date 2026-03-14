@@ -1,43 +1,114 @@
-function welcomeMessage(){
-
-alert("Welcome to VibeSpot created by Prezzoh Musila!");
-
-}
-
-
 function showSection(section){
 
-document.getElementById("home").style.display="none";
-document.getElementById("music").style.display="none";
-document.getElementById("movies").style.display="none";
-document.getElementById("gaming").style.display="none";
-document.getElementById("about").style.display="none";
+var sections=document.getElementsByClassName("section");
+
+for(var i=0;i<sections.length;i++){
+sections[i].style.display="none";
+}
 
 document.getElementById(section).style.display="block";
 
 }
 
+/* MUSIC PLAYER */
 
-/* Image slider */
+var playlist=[];
+var current=-1;
 
-var images = [
-"images/weeknd.jpeg",
-"images/darkknight.jpeg",
-"images/mw2.jpeg"
-];
+function searchSong(){
 
-var index = 0;
+var song=document.getElementById("searchSong").value;
 
-function changeImage(){
+document.getElementById("player").src=
+"https://www.youtube.com/embed?listType=search&list="+song;
 
-index++;
-
-if(index >= images.length){
-index = 0;
-}
-
-document.getElementById("sliderImage").src = images[index];
+playlist.push(song);
+current=playlist.length-1;
 
 }
 
-setInterval(changeImage,3000);
+function playSong(song){
+
+document.getElementById("player").src=
+"https://www.youtube.com/embed?listType=search&list="+song;
+
+playlist.push(song);
+current=playlist.length-1;
+
+}
+
+function nextSong(){
+
+if(current<playlist.length-1){
+
+current++;
+
+document.getElementById("player").src=
+"https://www.youtube.com/embed?listType=search&list="+playlist[current];
+
+}
+
+}
+
+function previousSong(){
+
+if(current>0){
+
+current--;
+
+document.getElementById("player").src=
+"https://www.youtube.com/embed?listType=search&list="+playlist[current];
+
+}
+
+}
+
+/* FAVORITES */
+
+function saveFavorite(){
+
+var song=playlist[current];
+
+var favorites=JSON.parse(localStorage.getItem("favorites")) || [];
+
+favorites.push(song);
+
+localStorage.setItem("favorites",JSON.stringify(favorites));
+
+displayFavorites();
+
+}
+
+function displayFavorites(){
+
+var favorites=JSON.parse(localStorage.getItem("favorites")) || [];
+
+var list=document.getElementById("favoriteList");
+
+list.innerHTML="";
+
+favorites.forEach(function(song){
+
+var li=document.createElement("li");
+
+li.innerText=song;
+
+list.appendChild(li);
+
+});
+
+}
+
+displayFavorites();
+
+/* LOGIN */
+
+function login(){
+
+var user=document.getElementById("username").value;
+
+localStorage.setItem("user",user);
+
+document.getElementById("loginMsg").innerText="Welcome "+user;
+
+}
