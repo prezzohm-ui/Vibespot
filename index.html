@@ -3,80 +3,11 @@
 
 <head>
 
-<title>VibeSpot - Prezzoh Musila</title>
+<title>VibeSpot</title>
+
+<link rel="stylesheet" href="style.css">
+
 <script src="script.js"></script>
-
-<style>
-
-body{
-font-family:Arial;
-margin:0;
-background:#111;
-color:white;
-}
-
-header{
-background:black;
-padding:20px;
-text-align:center;
-}
-
-nav{
-background:#222;
-padding:10px;
-text-align:center;
-}
-
-nav a{
-color:white;
-margin:10px;
-text-decoration:none;
-font-weight:bold;
-}
-
-nav a:hover{
-color:orange;
-}
-
-.content{
-padding:20px;
-}
-
-.section{
-background:#1e1e1e;
-padding:20px;
-margin-bottom:20px;
-border-radius:5px;
-}
-
-img{
-width:300px;
-border-radius:5px;
-}
-
-button{
-padding:10px;
-background:orange;
-border:none;
-cursor:pointer;
-}
-
-.slider{
-text-align:center;
-margin-bottom:20px;
-}
-
-footer{
-background:black;
-text-align:center;
-padding:15px;
-}
-
-iframe{
-margin-top:10px;
-}
-
-</style>
 
 </head>
 
@@ -85,134 +16,262 @@ margin-top:10px;
 <header>
 
 <h1>VibeSpot</h1>
-<p>Entertainment Hub by Prezzoh Musila</p>
+
+<p>Stream Music • Discover Movies • Explore Games</p>
 
 </header>
 
 <nav>
 
-<a href="#" onclick="showSection('home')">Home</a>
-<a href="#" onclick="showSection('music')">Music</a>
-<a href="#" onclick="showSection('movies')">Movies</a>
-<a href="#" onclick="showSection('gaming')">Gaming</a>
-<a href="#" onclick="showSection('about')">About</a>
+<a onclick="showSection('home')">Home</a>
+
+<a onclick="showSection('music')">Music</a>
+
+<a onclick="showSection('movies')">Movies</a>
+
+<a onclick="showSection('games')">Games</a>
+
+<a onclick="showSection('favorites')">Favorites</a>
+
+<a onclick="showSection('login')">Login</a>
+
+<a onclick="showSection('contact')">Contact</a>
 
 </nav>
 
-<div class="content">
 
 <!-- HOME -->
 
-<div id="home" class="section">
+<section id="home" class="section">
 
-<h2>Welcome to VibeSpot</h2>
+<div class="hero">
 
-<p>This website shares my favourite entertainment content.</p>
+<h1>Unlimited Entertainment</h1>
 
-<div class="slider">
+<p>Search any song instantly</p>
 
-<img id="sliderImage" src="images/weeknd.jpeg">
+<input id="searchSong" placeholder="Search song or artist">
+
+<button onclick="searchSong()">Search</button>
+
+</div>
+
+<div class="player">
+
+<iframe id="player"
+
+width="700"
+
+height="380"
+
+src="https://www.youtube.com/embed/4NRXx6U8ABQ"
+
+allowfullscreen>
+
+</iframe>
+
+<br>
+
+<button onclick="previousSong()">Previous</button>
+
+<button onclick="nextSong()">Next</button>
+
+<button onclick="saveFavorite()">❤️ Save</button>
 
 </div>
 
-<button onclick="welcomeMessage()">Say Hello</button>
-
-</div>
+</section>
 
 
 <!-- MUSIC -->
 
-<div id="music" class="section" style="display:none;">
+<section id="music" class="section">
 
-<h2>Music</h2>
+<h2>Trending Artists</h2>
 
-<img src="images/weeknd.jpeg" alt="The Weeknd" style="width:300px; border-radius:10px;">
+<div class="grid">
 
-<p>
-One of my favourite artists is The Weeknd.
-</p>
+<div class="card">
 
-<h3>Listen to a song</h3>
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/The_Weeknd_2018.png">
 
-<iframe width="400" height="220"
-src="https://www.youtube.com/embed/4NRXx6U8ABQ"
-title="Blinding Lights"
-frameborder="0"
-allowfullscreen>
-</iframe>
+<p>The Weeknd</p>
+
+<button onclick="playSong('The Weeknd Blinding Lights')">Play</button>
 
 </div>
+
+<div class="card">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Drake_2016.jpg">
+
+<p>Drake</p>
+
+<button onclick="playSong('Drake Gods Plan')">Play</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Travis_Scott.png">
+
+<p>Travis Scott</p>
+
+<button onclick="playSong('Travis Scott Sicko Mode')">Play</button>
+
+</div>
+
+</div>
+
+</section>
 
 
 <!-- MOVIES -->
 
-<div id="movies" class="section" style="display:none;">
+<section id="movies" class="section">
 
-<h2>Movies</h2>
+<h2>Popular Movies</h2>
 
-<img src="images/dark-knight.jpg" alt="The Dark Knight" style="width:300px; border-radius:10px;">
+<div class="grid">
 
-<p>
-The Dark Knight is one of the best superhero movies ever made.
-</p>
+<div class="card">
 
-<h3>Watch Trailer</h3>
+<img src="https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg">
 
-<iframe width="400" height="220"
-src="https://www.youtube.com/embed/EXeTwQWrcwY"
-title="Dark Knight Trailer"
-frameborder="0"
-allowfullscreen>
-</iframe>
+<p>The Dark Knight</p>
+
+<a href="https://www.netflix.com" target="_blank"><button>Watch</button></a>
 
 </div>
 
+<div class="card">
 
-<!-- GAMING -->
+<img src="https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg">
 
-<div id="gaming" class="section" style="display:none;">
+<p>Avengers Endgame</p>
 
-<h2>Gaming</h2>
-
-<img src="images/cod.jpg" alt="Call of Duty" style="width:300px; border-radius:10px;">
-
-<p>
-Call of Duty Modern Warfare II is a popular action game.
-</p>
+<a href="https://www.disneyplus.com" target="_blank"><button>Watch</button></a>
 
 </div>
 
+<div class="card">
 
-<!-- ABOUT -->
+<img src="https://upload.wikimedia.org/wikipedia/en/e/e0/Spider-Man_No_Way_Home_poster.jpg">
 
-<div id="about" class="section" style="display:none;">
+<p>Spider-Man No Way Home</p>
 
-<h2>About Me</h2>
+<a href="https://www.netflix.com" target="_blank"><button>Watch</button></a>
 
-<p>
-My name is Prezzoh Musila. I am a university student interested
-in technology, entertainment and web development.
-</p>
+</div>
 
-<p>
-VibeSpot is my project where I share music, movies and gaming content.
-</p>
+</div>
 
-<h3>Contact Me</h3>
+</section>
+
+
+<!-- GAMES -->
+
+<section id="games" class="section">
+
+<h2>Popular Games</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Call_of_Duty_Modern_Warfare_II_Key_Art.jpg">
+
+<p>Call of Duty MW2</p>
+
+<a href="https://store.steampowered.com" target="_blank"><button>Download</button></a>
+
+</div>
+
+<div class="card">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png">
+
+<p>GTA V</p>
+
+<a href="https://store.steampowered.com" target="_blank"><button>Download</button></a>
+
+</div>
+
+<div class="card">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/7/7c/EA_Sports_FC_24_cover.jpg">
+
+<p>EA Sports FC</p>
+
+<a href="https://store.steampowered.com" target="_blank"><button>Download</button></a>
+
+</div>
+
+<div class="card">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/f/f2/EFootball_2024_cover.jpg">
+
+<p>eFootball</p>
+
+<a href="https://store.steampowered.com" target="_blank"><button>Download</button></a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section id="favorites" class="section">
+
+<h2>Your Saved Songs</h2>
+
+<ul id="favoriteList"></ul>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section id="login" class="section">
+
+<div class="login">
+
+<h2>Login</h2>
+
+<input id="username" placeholder="Username">
+
+<input type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="loginMsg"></p>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="section">
+
+<h2>Contact</h2>
 
 <p>Phone: 0717740254</p>
 
 <p>Email: prezzohm@gmail.com</p>
 
-</div>
+</section>
 
 <footer>
 
-<p>© 2026 VibeSpot | Created by Prezzoh Musila</p>
+<p>© 2026 VibeSpot</p>
 
 </footer>
 
 </body>
-
 
 </html>
